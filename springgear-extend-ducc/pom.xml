@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>springgear-parent</artifactId>
+        <groupId>com.jd.springgear</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>springgear-extend-ducc</artifactId>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+
+        <ver.jd.laf>1.1.1</ver.jd.laf>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.jd.springgear</groupId>
+            <artifactId>springgear-context</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jd.laf.config</groupId>
+            <artifactId>laf-config-client-jd</artifactId>
+            <version>${ver.jd.laf}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jd.laf.config</groupId>
+            <artifactId>laf-config-client-spring</artifactId>
+            <version>${ver.jd.laf}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>
