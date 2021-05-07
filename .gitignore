@@ -200,10 +200,13 @@ fabric.properties
 
 # IntelliJ project files
 .idea
+.idea/
+.idea/**
 *.iml
 out
 gen
 target/
+target/**
 ### macOS template
 # General
 .DS_Store
