@@ -11,9 +11,19 @@
 
     <artifactId>springgear-extend-ump</artifactId>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
+    <dependencies>
+
+        <dependency>
+            <groupId>com.jd.springgear</groupId>
+            <artifactId>springgear-context</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jd.ump</groupId>
+            <artifactId>jannotation</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+
+    </dependencies>
 
 </project>
