@@ -20,10 +20,9 @@
 
         <dependency>
             <groupId>com.jd.ump</groupId>
-            <artifactId>jannotation</artifactId>
-            <version>4.1.0</version>
+            <artifactId>profiler</artifactId>
+            <version>6.2.9</version>
         </dependency>
-
     </dependencies>
 
 </project>
