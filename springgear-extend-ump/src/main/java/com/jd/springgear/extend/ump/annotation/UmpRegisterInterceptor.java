@@ -27,7 +27,7 @@ public class UmpRegisterInterceptor extends SpringGearUmpInterceptor implements 
     public UmpRegisterInterceptor(int order, String appname) {
         Assert.hasText(appname, "需要填写应用名");
         this.order = order;
-        this.appname = appname;
+        this.appname = this.getValidKey(appname);
 
         String systemKey = "heartbeat".concat(SymbolEnum.DOT.getString()).concat(appname);
         String jvmKey = "jvm".concat(SymbolEnum.DOT.getString()).concat(appname);
