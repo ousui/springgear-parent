@@ -15,6 +15,7 @@ import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.cglib.proxy.InvocationHandler;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
@@ -24,7 +25,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * SpringGear 的动态代理实现类。
@@ -35,6 +35,9 @@ public class SpringGearProxyInstance implements InvocationHandler, Serializable 
 
     private final ApplicationContext applicationContext;
 
+    /**
+     * 拦截器们
+     */
     private final List<SpringGearInterceptor> interceptors;
 
     /**
@@ -44,12 +47,12 @@ public class SpringGearProxyInstance implements InvocationHandler, Serializable 
 
     public SpringGearProxyInstance(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
-
         Map<String, SpringGearInterceptor> interceptorMap = this.applicationContext.getBeansOfType(SpringGearInterceptor.class);
         if (CollectionUtils.isEmpty(interceptorMap)) {
             interceptors = Collections.EMPTY_LIST;
         } else {
-            interceptors = Lists.newArrayList(interceptorMap.values()).stream().sorted().collect(Collectors.toList());
+            interceptors = Lists.newArrayList(interceptorMap.values());
+            AnnotationAwareOrderComparator.sort(interceptors);
         }
     }
 
