@@ -5,11 +5,12 @@
     <parent>
         <artifactId>springgear-parent</artifactId>
         <groupId>com.jd.springgear</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>0.0.0-PARENT-FIXED</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>springgear-webmvc</artifactId>
+    <version>${ver.revision}${ver.revision.suffix}</version>
 
 
 </project>

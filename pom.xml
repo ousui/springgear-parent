@@ -6,7 +6,7 @@
 
     <groupId>com.jd.springgear</groupId>
     <artifactId>springgear-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.0.0-PARENT-FIXED</version>
 
     <modules>
         <module>springgear-support</module>
@@ -31,7 +31,7 @@
         <!-- version 统一版本管理，推荐类似 spring 这种多模块引入形式进行引入 -->
         <ver.springgear>${ver.revision}${ver.revision.suffix}</ver.springgear>
         <!-- ${ver.springgear}-${ver.suffix.springgear} 包版本为动态更新 -->
-        <ver.revision>1.0.0</ver.revision>
+        <ver.revision>1.1.0</ver.revision>
         <ver.revision.suffix>-SNAPSHOT</ver.revision.suffix>
 
         <!-- 常用版本 -->
