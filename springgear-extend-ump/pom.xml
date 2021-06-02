@@ -12,4 +12,18 @@
     <artifactId>springgear-extend-ump</artifactId>
     <version>${ver.revision}${ver.revision.suffix}</version>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>com.jd.springgear</groupId>
+            <artifactId>springgear-context</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jd.ump</groupId>
+            <artifactId>profiler</artifactId>
+            <version>6.2.9</version>
+        </dependency>
+    </dependencies>
+
 </project>

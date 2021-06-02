@@ -53,7 +53,7 @@
         <profile>
             <id>release</id>
             <properties>
-                <ver.revision.suffix>-</ver.revision.suffix>
+                <ver.revision.suffix></ver.revision.suffix>
             </properties>
         </profile>
 

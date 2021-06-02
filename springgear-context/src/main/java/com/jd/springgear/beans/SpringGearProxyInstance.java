@@ -1,6 +1,9 @@
 package com.jd.springgear.beans;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.jd.springgear.beans.interceptor.SpringGearInterceptor;
+import com.jd.springgear.beans.interceptor.SpringGearInterceptorChain;
 import com.jd.springgear.context.utils.SpringGearEngineUtils;
 import com.jd.springgear.engine.SpringGearEngineInterface;
 import com.jd.springgear.engine.annotation.SpringGearEngine;
@@ -8,16 +11,19 @@ import com.jd.springgear.exception.GearInterruptException;
 import com.jd.springgear.exception.SpringGearException;
 import com.jd.springgear.support.constants.HttpStatus;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.ThreadContext;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.cglib.proxy.InvocationHandler;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.AnnotationAwareOrderComparator;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,12 +36,24 @@ public class SpringGearProxyInstance implements InvocationHandler, Serializable 
     private final ApplicationContext applicationContext;
 
     /**
+     * 拦截器们
+     */
+    private final List<SpringGearInterceptor> interceptors;
+
+    /**
      * bean 缓存
      */
     private Map<String, SpringGearEngineInterface> interfaceCachedMap = Maps.newConcurrentMap();
 
     public SpringGearProxyInstance(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
+        Map<String, SpringGearInterceptor> interceptorMap = this.applicationContext.getBeansOfType(SpringGearInterceptor.class);
+        if (CollectionUtils.isEmpty(interceptorMap)) {
+            interceptors = Collections.EMPTY_LIST;
+        } else {
+            interceptors = Lists.newArrayList(interceptorMap.values());
+            AnnotationAwareOrderComparator.sort(interceptors);
+        }
     }
 
     @Override
@@ -70,7 +88,7 @@ public class SpringGearProxyInstance implements InvocationHandler, Serializable 
         Object request = null;
         Object[] others = null; // 保证不为 Null，方便业务逻辑判断
         if (!ObjectUtils.isEmpty(args)) {
-            log.debug("args is {}",args);
+            log.debug("args is {}", args);
             if (null == args[0]) { // 第一个个入参为空，报空指针。
                 throw new NullPointerException(
                         String.format("ApiWorkflowInterface's first argument must not be null, you can change the method '%s' without argument.", method.getName())
@@ -93,30 +111,35 @@ public class SpringGearProxyInstance implements InvocationHandler, Serializable 
 
         long timestamp = System.currentTimeMillis();
 
-        // TODO 临时处理，后面会抽象出，自己进行实现
-        ThreadContext.put("ts", String.valueOf(timestamp));
+
+        SpringGearInterceptorChain chain = new SpringGearInterceptorChain(interceptors);
 
         Object resp = null;
 
         int code = HttpStatus.SC_OK;
         String msg = "ok";
 
+        Exception ex = null;
+
         try {
+            chain.beforeExecute(beanName, request, timestamp);
+
             resp = engineBean.execute(request, timestamp, others);
-            /**
-             * @fix 这里理应不做异常处理，现阶段为了适应前端代码，做了统一的处理，从而使 response 统一返回 200。
-             */
+
+            chain.afterExecute(beanName, request, timestamp, null, resp);
         } catch (SpringGearException e) {
+            ex = e;
             code = e.getCode();
             msg = e.getLocalizedMessage();
             if (e instanceof GearInterruptException) {
                 resp = ((GearInterruptException) e).getResponse();
             }
             log.warn("There have some business exception happened, code: {}, msg: {}", code, msg);
+            chain.onException(beanName, request, timestamp, null, resp, e);
+        } catch (Exception e) {
+            ex = e;
         } finally {
-//                if (monitoringError) { // 完成注册。
-//                    Profiler.registerInfoEnd(callerInfo);
-//                }
+            chain.onFinally(beanName, request, timestamp, null, resp, ex);
         }
 
         Object result = engineBean.wrap(resp, timestamp, code, msg, others);
