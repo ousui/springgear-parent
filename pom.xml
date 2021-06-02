@@ -6,7 +6,7 @@
 
     <groupId>com.jd.springgear</groupId>
     <artifactId>springgear-parent</artifactId>
-    <version>0.0.0-PARENT-FIXED</version>
+    <version>0.0.0-FIXED-SNAPSHOT</version>
 
     <modules>
         <module>springgear-support</module>
