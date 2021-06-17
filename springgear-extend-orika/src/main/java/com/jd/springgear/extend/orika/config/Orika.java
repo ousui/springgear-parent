@@ -1,5 +1,6 @@
-package com.jd.springgear.extend.orika;
+package com.jd.springgear.extend.orika.config;
 
+import com.jd.springgear.extend.orika.OrikaBeanMapper;
 import ma.glasnost.orika.MapperFacade;
 import org.springframework.context.annotation.Bean;
 
