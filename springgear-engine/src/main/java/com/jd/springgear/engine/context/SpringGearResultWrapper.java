@@ -18,13 +18,14 @@ public interface SpringGearResultWrapper<R> {
     /**
      * 结果包裹器
      *
-     * @param resp
-     * @param timestamp
-     * @param code
-     * @param msg
-     * @param others
+     * @param req       请求
+     * @param resp      响应
+     * @param timestamp 时间戳
+     * @param code      异常代码
+     * @param msg       信息
+     * @param others    其他参数
      * @return
      */
-    R process(Object resp, long timestamp, int code, String msg, Object... others);
+    R process(Object req, Object resp, long timestamp, int code, String msg, Object... others);
 
 }

@@ -12,7 +12,7 @@ import java.util.Map;
  **/
 public class SpringGearResultMapWrapper<R> implements SpringGearResultWrapper<Map<String, Object>> {
     @Override
-    public Map<String, Object> process(Object resp, long timestamp, int code, String msg, Object... others) {
+    public Map<String, Object> process(Object req, Object resp, long timestamp, int code, String msg, Object... others) {
         Map<String, Object> result = Maps.newHashMap();
 
         result.put("ts", timestamp);
