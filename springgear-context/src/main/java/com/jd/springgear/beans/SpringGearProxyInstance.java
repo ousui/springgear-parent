@@ -142,7 +142,7 @@ public class SpringGearProxyInstance implements InvocationHandler, Serializable 
             chain.onFinally(beanName, request, timestamp, null, resp, ex);
         }
 
-        Object result = engineBean.wrap(resp, timestamp, code, msg, others);
+        Object result = engineBean.wrap(request, resp, timestamp, code, msg, others);
         log.debug("[{}] '{}' process context: {}", timestamp, beanName, result);
         return result;
     }

@@ -21,6 +21,7 @@ public interface SpringGearEngineInterface<REQ, RESP> {
     /**
      * 对执行结果进行包裹返回
      *
+     * @param req
      * @param resp
      * @param timestamp
      * @param code
@@ -28,5 +29,5 @@ public interface SpringGearEngineInterface<REQ, RESP> {
      * @param others
      * @return
      */
-    Object wrap(RESP resp, long timestamp, int code, String msg, Object... others);
+    Object wrap(REQ req, RESP resp, long timestamp, int code, String msg, Object... others);
 }

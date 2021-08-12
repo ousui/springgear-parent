@@ -1,10 +1,11 @@
-package com.jd.springgear.extend.ducc;
+package com.jd.springgear.extend.ducc.config;
 
 import com.jd.laf.config.ConfiguratorManager;
 import com.jd.laf.config.spring.config.ConfigPostProcessor;
 import com.jd.laf.config.spring.config.Observer;
 import com.jd.laf.config.spring.config.PropertySourcesFactoryPostProcessor;
 import com.jd.springgear.config.Properties;
+import com.jd.springgear.extend.ducc.DuccConfigurator;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -29,8 +30,7 @@ import static com.jd.laf.config.spring.config.Observer.OBSERVER_BEAN_NAME;
  * @since 2020/12/19
  **/
 @PropertySource(value = {
-        "classpath:properties/ducc.properties",
-        "classpath:ducc.properties",
+        "classpath:properties/ducc.properties", "classpath:ducc.properties",
 }, ignoreResourceNotFound = true)
 @Import({Properties.class})
 public class Ducc implements EnvironmentAware, ApplicationContextAware {
@@ -81,8 +81,6 @@ public class Ducc implements EnvironmentAware, ApplicationContextAware {
                     this.getResource(username, token, host, namespace, config, env.getProperty(PREFIX_PROPERTY_PROFILES.concat(config)), polling, necessary)
             );
         }
-
-
 
         Map<String, DuccConfigurator> configurators = applicationContext.getBeansOfType(DuccConfigurator.class);
 

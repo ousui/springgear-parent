@@ -164,13 +164,13 @@ public abstract class AbstractSpringGearEngineExecutor implements SpringGearEngi
     }
 
     @Override
-    public Object wrap(Object o, long timestamp, int code, String msg, Object... others) {
+    public Object wrap(Object req, Object resp, long timestamp, int code, String msg, Object... others) {
 
         if (log.isDebugEnabled()) {
-            log.debug("start wrap parameters, o: `{}`, timestamp: `{}`, code: `{}`, msg: `{}`", o, timestamp, code, msg);
+            log.debug("start wrap parameters, req: `{}`, resp: `{}`, timestamp: `{}`, code: `{}`, msg: `{}`", req, resp, timestamp, code, msg);
         }
 
-        return wrapper.process(o, timestamp, code, msg, others);
+        return wrapper.process(req, resp, timestamp, code, msg, others);
     }
 
     /**

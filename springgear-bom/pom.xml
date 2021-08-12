@@ -5,21 +5,25 @@
     <parent>
         <artifactId>springgear-parent</artifactId>
         <groupId>com.jd.springgear</groupId>
-        <version>1.0.0</version>
+        <version>0.0.0-FIXED-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>springgear-bom</artifactId>
+    <version>${ver.revision}${ver.revision.suffix}</version>
+
     <packaging>pom</packaging>
 
-
+    <description>
+        springgear 组件装箱清单
+    </description>
 
     <dependencyManagement>
 
         <dependencies>
             <dependency>
                 <groupId>com.jd.springgear</groupId>
-                <artifactId>springgear-support</artifactId>
+                <artifactId>springgear-context</artifactId>
                 <version>${ver.springgear}</version>
             </dependency>
             <dependency>
@@ -29,7 +33,7 @@
             </dependency>
             <dependency>
                 <groupId>com.jd.springgear</groupId>
-                <artifactId>springgear-context</artifactId>
+                <artifactId>springgear-support</artifactId>
                 <version>${ver.springgear}</version>
             </dependency>
             <dependency>
@@ -40,6 +44,16 @@
             <dependency>
                 <groupId>com.jd.springgear</groupId>
                 <artifactId>springgear-extend-ducc</artifactId>
+                <version>${ver.springgear}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jd.springgear</groupId>
+                <artifactId>springgear-extend-jimdb</artifactId>
+                <version>${ver.springgear}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jd.springgear</groupId>
+                <artifactId>springgear-extend-jmq</artifactId>
                 <version>${ver.springgear}</version>
             </dependency>
             <dependency>

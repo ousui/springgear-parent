@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SpringGearResultOriginalWrapper<R> implements SpringGearResultWrapper<Object> {
     @Override
-    public Object process(Object resp, long timestamp, int code, String msg, Object... others) {
+    public Object process(Object req, Object resp, long timestamp, int code, String msg, Object... others) {
         return resp;
     }
 }

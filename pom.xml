@@ -6,17 +6,19 @@
 
     <groupId>com.jd.springgear</groupId>
     <artifactId>springgear-parent</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.0-FIXED-SNAPSHOT</version>
 
     <modules>
         <module>springgear-support</module>
         <module>springgear-engine</module>
         <module>springgear-context</module>
         <module>springgear-webmvc</module>
-        <module>springgear-extend-jsf</module>
-        <module>springgear-extend-ump</module>
         <module>springgear-extend-ducc</module>
+        <module>springgear-extend-jimdb</module>
+        <module>springgear-extend-jmq</module>
+        <module>springgear-extend-jsf</module>
         <module>springgear-extend-orika</module>
+        <module>springgear-extend-ump</module>
         <module>springgear-bom</module>
     </modules>
 
@@ -31,7 +33,7 @@
         <!-- version 统一版本管理，推荐类似 spring 这种多模块引入形式进行引入 -->
         <ver.springgear>${ver.revision}${ver.revision.suffix}</ver.springgear>
         <!-- ${ver.springgear}-${ver.suffix.springgear} 包版本为动态更新 -->
-        <ver.revision>1.0.0</ver.revision>
+        <ver.revision>1.1.0</ver.revision>
         <ver.revision.suffix>-SNAPSHOT</ver.revision.suffix>
 
         <!-- 常用版本 -->
@@ -220,21 +222,21 @@
     <repositories>
         <repository>
             <id>repo-jd-releases-local</id>
-            <url>http://artifactory.jd.com/libs-releases-local</url>
+            <url>https://artifactory.jd.com/libs-releases-local</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
         </repository>
         <repository>
             <id>repo-jd-releases</id>
-            <url>http://artifactory.jd.com/libs-releases</url>
+            <url>https://artifactory.jd.com/libs-releases</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
         </repository>
         <repository>
             <id>repo-jd-snapshots-local</id>
-            <url>http://artifactory.jd.com/libs-snapshots-local</url>
+            <url>https://artifactory.jd.com/libs-snapshots-local</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -244,7 +246,7 @@
         </repository>
         <repository>
             <id>repo-jd-snapshots</id>
-            <url>http://artifactory.jd.com/libs-snapshots</url>
+            <url>https://artifactory.jd.com/libs-snapshots</url>
             <snapshots>
                 <updatePolicy>interval:60</updatePolicy>
             </snapshots>
@@ -254,11 +256,11 @@
     <pluginRepositories>
         <pluginRepository>
             <id>jd-maven-plugins-releases</id>
-            <url>http://artifactory.jd.com/plugins-releases</url>
+            <url>https://artifactory.jd.com/plugins-releases</url>
         </pluginRepository>
         <pluginRepository>
             <id>jd-maven-plugins-snapshots</id>
-            <url>http://artifactory.jd.com/plugins-snapshots</url>
+            <url>https://artifactory.jd.com/plugins-snapshots</url>
             <snapshots>
                 <updatePolicy>interval:60</updatePolicy>
             </snapshots>
@@ -268,11 +270,11 @@
     <distributionManagement>
         <repository>
             <id>repo-jd-releases-local</id>
-            <url>http://artifactory.jd.com/libs-releases-local</url>
+            <url>https://artifactory.jd.com/libs-releases-local</url>
         </repository>
         <snapshotRepository>
             <id>repo-jd-snapshots-local</id>
-            <url>http://artifactory.jd.com/libs-snapshots-local</url>
+            <url>https://artifactory.jd.com/libs-snapshots-local</url>
         </snapshotRepository>
     </distributionManagement>
 

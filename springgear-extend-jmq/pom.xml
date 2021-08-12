@@ -9,11 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springgear-extend-jsf</artifactId>
+    <artifactId>springgear-extend-jmq</artifactId>
     <version>${ver.revision}${ver.revision.suffix}</version>
 
     <description>
-        springgear 扩展支持 - jsf
+        springgear 扩展支持 - jmq client, 支持 2.x, 4.x
     </description>
 
     <dependencies>
@@ -23,13 +23,21 @@
         </dependency>
 
         <dependency>
-            <groupId>com.jd</groupId>
-            <artifactId>jsf</artifactId>
-            <version>1.7.4-HOTFIX-T4</version>
+            <groupId>com.jd.jmq</groupId>
+            <artifactId>jmq-client-core</artifactId>
+            <version>2.3.1</version>
             <exclusions>
                 <exclusion>
-                    <groupId>com.alibaba</groupId>
-                    <artifactId>fastjson</artifactId>
+                    <groupId>junit</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>

@@ -5,11 +5,12 @@
     <parent>
         <artifactId>springgear-parent</artifactId>
         <groupId>com.jd.springgear</groupId>
-        <version>1.0.0</version>
+        <version>0.0.0-FIXED-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>springgear-extend-ducc</artifactId>
+    <version>${ver.revision}${ver.revision.suffix}</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
